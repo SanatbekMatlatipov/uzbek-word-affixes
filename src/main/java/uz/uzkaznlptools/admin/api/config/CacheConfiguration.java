@@ -42,6 +42,7 @@ public class CacheConfiguration {
             createCache(cm, uz.uzkaznlptools.admin.api.domain.User.class.getName());
             createCache(cm, uz.uzkaznlptools.admin.api.domain.Authority.class.getName());
             createCache(cm, uz.uzkaznlptools.admin.api.domain.User.class.getName() + ".authorities");
+            createCache(cm, uz.uzkaznlptools.admin.api.domain.Endings.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

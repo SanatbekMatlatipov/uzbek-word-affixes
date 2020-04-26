@@ -1,0 +1,16 @@
+
+enum Language {
+    UZBEK, KAZAKH
+}
+
+entity Endings (main_endings) {
+	name String,
+    numberOfTypes Integer,
+    language Language
+}
+
+paginate all with pagination
+
+dto * with mapstruct
+
+service * with serviceClass
