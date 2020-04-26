@@ -1,0 +1,11 @@
+version: '2'
+services:
+  uzkaznlptools-postgresql:
+    image: postgres:12.1
+    # volumes:
+    #     - ~/volumes/jhipster/UzKazNlpTools/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=UzKazNlpTools
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432

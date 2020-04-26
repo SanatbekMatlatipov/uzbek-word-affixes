@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "uz.uzkaznlptools.admin.api",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "UzKazNlpTools",
+    "packageName": "uz.uzkaznlptools.admin.api",
+    "packageFolder": "uz/uzkaznlptools/admin/api",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZThmOGNjZTZlMjBiMGZlODJhYzIzMGEzODM5YTFmZTZhNDhhMmUxYTI3MzYwOWViYzE0MDYzZTJmZGI0NDVkZDRkMTk2MWJkM2YzNzVjMGU2MGY2YTdlYzgzMWY2ODNmOTM1NmU1OTAyZGRlODJiN2NjYjM2OTAwZjY4YThiYjc=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1587861414202,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "uz-Latn-uz"],
+    "blueprints": []
+  }
+}
