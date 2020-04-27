@@ -1,0 +1,24 @@
+{
+  "uzKazNlpToolsApp": {
+    "endings": {
+      "home": {
+        "title": "Endings",
+        "createLabel": "Create a new Endings",
+        "createOrEditLabel": "Create or edit a Endings",
+        "notFound": "No Endings found"
+      },
+      "created": "A new Endings is created with identifier {{ param }}",
+      "updated": "A Endings is updated with identifier {{ param }}",
+      "deleted": "A Endings is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Endings {{ id }}?"
+      },
+      "detail": {
+        "title": "Endings"
+      },
+      "name": "Name",
+      "numberOfTypes": "Number Of Types",
+      "language": "Language"
+    }
+  }
+}

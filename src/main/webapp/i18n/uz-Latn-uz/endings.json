@@ -1,0 +1,24 @@
+{
+  "uzKazNlpToolsApp": {
+    "endings": {
+      "home": {
+        "title": "Endings",
+        "createLabel": "Yangi Endings qo`shish",
+        "createOrEditLabel": "Endingsni tahrirlash",
+        "notFound": "No Endings found"
+      },
+      "created": "Endings {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Endings saqlandi",
+      "deleted": "{{ param }}- Endings o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Endingsni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Endings"
+      },
+      "name": "Name",
+      "numberOfTypes": "Number Of Types",
+      "language": "Language"
+    }
+  }
+}
