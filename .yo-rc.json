@@ -38,6 +38,8 @@
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": ["en", "uz-Latn-uz"],
-    "blueprints": []
+    "blueprints": [],
+    "herokuAppName": "uz-kaz-nlp-tools",
+    "herokuDeployType": "jar"
   }
 }
