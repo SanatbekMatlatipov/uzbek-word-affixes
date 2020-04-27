@@ -1,6 +1,7 @@
 package uz.uzkaznlptools.admin.api.web.rest;
 
 import uz.uzkaznlptools.admin.api.service.EndingsService;
+import uz.uzkaznlptools.admin.api.service.dto.QueryValuesDTO;
 import uz.uzkaznlptools.admin.api.web.rest.errors.BadRequestAlertException;
 import uz.uzkaznlptools.admin.api.service.dto.EndingsDTO;
 
@@ -121,5 +122,14 @@ public class EndingsResource {
         log.debug("REST request to delete Endings : {}", id);
         endingsService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/endings/getStem")
+    public ResponseEntity<QueryValuesDTO> getStem(@RequestParam("text") String text, @RequestParam("language") String language) {
+        log.debug("REST request to get QueryValuesDTO : {}", text);
+//        log.debug("REST request to get QueryValuesDTO : {}", id);
+        log.debug("REST request to get QueryValuesDTO : {}", language);
+//        Optional<EndingsDTO> endingsDTO = endingsService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(null);
     }
 }

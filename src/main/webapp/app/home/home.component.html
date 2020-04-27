@@ -1,17 +1,22 @@
 <div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
-    </div>
-
-    <div class="col-md-9">
-        <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
-
+<!--    <div class="col-md-1">-->
+<!--    </div>-->
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2">
+                <span class="hipster img-fluid rounded"></span>
+            </div>
+            <div class="col-md-10">
+                <br>
+                <h1 class="display-4" jhiTranslate="home.title">Welcome, Java Hipster!</h1>
+            </div>
+        </div>
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
 
         <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                    [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
+                      [translateValues]="{ username: account.login }">You are logged in as user "{{ account.login }}".</span>
             </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
@@ -25,20 +30,54 @@
             </div>
         </div>
 
-        <p jhiTranslate="home.question">
-            If you have any question on JHipster:
-        </p>
+        <!--        <p jhiTranslate="home.question">-->
+        <!--            If you have any question on JHipster:-->
+        <!--        </p>-->
 
-        <ul>
-            <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.homepage">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.bugtracker">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.chat">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.follow">follow @jhipster on Twitter</a></li>
-        </ul>
+        <!--        <ul>-->
+        <!--            <li><a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.homepage">JHipster homepage</a></li>-->
+        <!--            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.stackoverflow">JHipster on Stack Overflow</a></li>-->
+        <!--            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.bugtracker">JHipster bug tracker</a></li>-->
+        <!--            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.chat">JHipster public chat room</a></li>-->
+        <!--            <li><a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.follow">follow @jhipster on Twitter</a></li>-->
+        <!--        </ul>-->
 
-        <p>
-            <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">GitHub</a>!
-        </p>
+        <!--        <p>-->
+        <!--            <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github">GitHub</a>!-->
+        <!--        </p>-->
     </div>
+
 </div>
+<form name="submitForm" role="form" novalidate (ngSubmit)="getStem()" [formGroup]="submitForm">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="uzKazNlpToolsApp.endings.language" for="field_language">Language</label>
+                <select class="form-control" name="language" formControlName="language" id="field_language">
+                    <option value="UZBEK">{{ 'uzKazNlpToolsApp.Language.UZBEK' | translate }}</option>
+                    <option value="KAZAKH">{{ 'uzKazNlpToolsApp.Language.KAZAKH' | translate }}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="field_text">Example textarea</label>
+                <textarea class="form-control" id="field_text" rows="6" name="text" formControlName="text" placeholder="Please, enter the text"></textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="exampleFormControlTextarea2">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea2" rows="6" readonly></textarea>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit" id="save-entity" [disabled]="submitForm.invalid || isSaving" class="btn btn-primary">
+                <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
+        </div>
+    </div>
+</form>
