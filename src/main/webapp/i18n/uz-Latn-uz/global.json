@@ -99,7 +99,8 @@
       "edit": "O`zgartir",
       "open": "Och",
       "save": "Saqla",
-      "view": "Ko`rish"
+      "view": "Ko`rish",
+      "makeStem": "Ildizga ajrat"
     },
     "detail": {
       "field": "Maydon",

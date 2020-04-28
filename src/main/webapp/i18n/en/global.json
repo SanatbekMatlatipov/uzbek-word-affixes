@@ -99,7 +99,8 @@
       "edit": "Edit",
       "open": "Open",
       "save": "Save",
-      "view": "View"
+      "view": "View",
+      "makeStem": "Make stem"
     },
     "detail": {
       "field": "Field",

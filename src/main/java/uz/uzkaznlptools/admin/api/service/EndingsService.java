@@ -1,6 +1,7 @@
 package uz.uzkaznlptools.admin.api.service;
 
 import uz.uzkaznlptools.admin.api.domain.Endings;
+import uz.uzkaznlptools.admin.api.domain.enumeration.Language;
 import uz.uzkaznlptools.admin.api.repository.EndingsRepository;
 import uz.uzkaznlptools.admin.api.service.dto.EndingsDTO;
 import uz.uzkaznlptools.admin.api.service.mapper.EndingsMapper;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -79,5 +81,10 @@ public class EndingsService {
     public void delete(Long id) {
         log.debug("Request to delete Endings : {}", id);
         endingsRepository.deleteById(id);
+    }
+
+    public List<EndingsDTO> findAllEntitiesByLanguage(Language language) {
+        log.debug("Request to get all Endings");
+        return endingsMapper.toDto(endingsRepository.findAllByLanguage(language));
     }
 }

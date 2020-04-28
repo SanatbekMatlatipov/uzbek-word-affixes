@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IEndings } from 'app/shared/model/endings.model';
+import { IQueryValues } from 'app/shared/model/query-values.model';
+import { IFormParams } from 'app/shared/model/form-params.model';
 
 type EntityResponseType = HttpResponse<IEndings>;
 type EntityArrayResponseType = HttpResponse<IEndings[]>;
@@ -34,5 +36,10 @@ export class EndingsService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  getStem(formParams: IFormParams): Observable<HttpResponse<IQueryValues[]>> {
+    const options = createRequestOption(formParams);
+    return this.http.get<IQueryValues[]>(`${this.resourceUrl}/getStem?`, { observe: 'response', params: options });
   }
 }

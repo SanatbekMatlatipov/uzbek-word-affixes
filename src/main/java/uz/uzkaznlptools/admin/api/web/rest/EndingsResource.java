@@ -1,6 +1,12 @@
 package uz.uzkaznlptools.admin.api.web.rest;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.web.client.RestTemplate;
+import uz.uzkaznlptools.admin.api.domain.enumeration.Language;
 import uz.uzkaznlptools.admin.api.service.EndingsService;
+import uz.uzkaznlptools.admin.api.service.dto.DictionaryLatinDTO;
+import uz.uzkaznlptools.admin.api.service.dto.QueryValuesDTO;
 import uz.uzkaznlptools.admin.api.web.rest.errors.BadRequestAlertException;
 import uz.uzkaznlptools.admin.api.service.dto.EndingsDTO;
 
@@ -13,13 +19,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,5 +127,83 @@ public class EndingsResource {
         log.debug("REST request to delete Endings : {}", id);
         endingsService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    @GetMapping("/endings/getStem")
+    public ResponseEntity<List<QueryValuesDTO>> getStem(@RequestParam("text") String text,
+                                                        @RequestParam("language") Language language) {
+        log.debug("REST request to get text tokens : {}", text);
+        log.debug("REST request to get tokens from : {}", language);
+        List<EndingsDTO> endings = endingsService.findAllEntitiesByLanguage(language);
+        ArrayList<String> validTokens = getValidLowerCaseTokensFromText(text);
+        List<DictionaryLatinDTO> dictionaryLatins = getAllDictionaryLatin();
+        List<QueryValuesDTO> result = new ArrayList<>();
+        for (String validToken : validTokens) {
+            QueryValuesDTO queryValuesDTO = new QueryValuesDTO();
+            String fromCyrToLat = translate(validToken, dictionaryLatins);
+            queryValuesDTO.setHasCyrToLat(false);
+            if (!validToken.equals(fromCyrToLat)) {
+                queryValuesDTO.setHasCyrToLat(true);
+                validToken = fromCyrToLat;
+            }
+            if (validToken.length() < 3) {
+                queryValuesDTO.setRoot(validToken);
+            }
+            int length = validToken.length();
+            boolean isEndingFound = false;
+            for (int i = 2; i < length; i++) {
+                String maybeRoot = validToken.substring(0, i);
+                String maybeEnding = validToken.substring(i, length);
+                if (containsName(endings, maybeEnding)) {
+                    queryValuesDTO.setRoot(maybeRoot);
+                    queryValuesDTO.setEnding(maybeEnding);
+                    isEndingFound = true;
+                    break;
+                }
+            }
+            if (!isEndingFound) {
+                queryValuesDTO.setRoot(validToken);
+            }
+            result.add(queryValuesDTO);
+        }
+        return ResponseEntity.ok().body(result);
+    }
+
+    public boolean containsName(final List<EndingsDTO> list, final String name) {
+        return list.stream().anyMatch(o -> o.getName().equals(name));
+    }
+
+    private String translate(String validToken, List<DictionaryLatinDTO> dictionaryLatins) {
+        String result = validToken;
+        for (DictionaryLatinDTO dictionaryLatin : dictionaryLatins) {
+            result = validToken.replaceAll(dictionaryLatin.getLetterCyrill(), dictionaryLatin.getLetterLatin());
+            validToken = result;
+        }
+        return result;
+    }
+
+    private List<DictionaryLatinDTO> getAllDictionaryLatin() {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<DictionaryLatinDTO>> response = restTemplate
+            .exchange(
+                "https://api.bexatobot.uz/v1/dictionary-latins",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<DictionaryLatinDTO>>() {
+                }
+            );
+        return response.getBody();
+    }
+
+    private ArrayList<String> getValidLowerCaseTokensFromText(String text) {
+        text = text.replaceAll("[^A-Za-z0-9А-Яа-яўқғ'’`]", " ");
+        String[] tokens = text.split(" ");
+        ArrayList<String> result = new ArrayList<>();
+        for (String token : tokens) {
+            if (token.length() >= 1 && !token.equals(" ")) {
+                result.add(token.toLowerCase());
+            }
+        }
+        return result;
     }
 }
