@@ -1,26 +1,34 @@
 package uz.uzkaznlptools.admin.api.service.dto;
 
-import uz.uzkaznlptools.admin.api.domain.enumeration.Language;
-
 public class QueryValuesDTO {
 
-    private Long text;
+    private String root;
 
-    private Long language;
+    private String ending;
 
-    public Long getText() {
-        return text;
+    private Boolean hasCyrToLat;
+
+    public String getRoot() {
+        return root;
     }
 
-    public void setText(Long text) {
-        this.text = text;
+    public void setRoot(String root) {
+        this.root = root;
     }
 
-    public Long getLanguage() {
-        return language;
+    public String getEnding() {
+        return ending;
     }
 
-    public void setLanguage(Long language) {
-        this.language = language;
+    public void setEnding(String ending) {
+        this.ending = ending;
+    }
+
+    public Boolean getHasCyrToLat() {
+        return hasCyrToLat;
+    }
+
+    public void setHasCyrToLat(Boolean hasCyrToLat) {
+        this.hasCyrToLat = hasCyrToLat;
     }
 }
