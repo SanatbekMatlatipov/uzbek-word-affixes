@@ -15,5 +15,5 @@ import java.util.List;
 @Repository
 public interface EndingsRepository extends JpaRepository<Endings, Long> {
 
-    List<Endings> findAllByLanguage(Language language);
+    List<Endings> findAllByLanguageOrderByNumberOfTypesDesc(Language language);
 }

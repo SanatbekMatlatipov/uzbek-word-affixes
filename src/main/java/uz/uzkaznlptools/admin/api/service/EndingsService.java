@@ -85,6 +85,6 @@ public class EndingsService {
 
     public List<EndingsDTO> findAllEntitiesByLanguage(Language language) {
         log.debug("Request to get all Endings");
-        return endingsMapper.toDto(endingsRepository.findAllByLanguage(language));
+        return endingsMapper.toDto(endingsRepository.findAllByLanguageOrderByNumberOfTypesDesc(language));
     }
 }

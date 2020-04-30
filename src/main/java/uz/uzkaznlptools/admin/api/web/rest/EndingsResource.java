@@ -196,7 +196,7 @@ public class EndingsResource {
     }
 
     private ArrayList<String> getValidLowerCaseTokensFromText(String text) {
-        text = text.replaceAll("[^A-Za-z0-9А-Яа-яўқғ'’`]", " ");
+        text = text.replaceAll("[^A-Za-z0-9А-Яа-яўқғ'’`‘]", " ");
         String[] tokens = text.split(" ");
         ArrayList<String> result = new ArrayList<>();
         for (String token : tokens) {
