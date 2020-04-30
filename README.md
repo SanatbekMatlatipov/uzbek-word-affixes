@@ -6,6 +6,9 @@ This application has been established for the development of Uzbek - Kazakh lang
      - Lexicon free lemmatization(version 0.0.1)
      - uzbek-word-affixes - the resource is created for the creation of complete set of Uzbek language affixes. However, there is always a space for improving it
 
+## You can try it out in the following url:
+https://uz-kaz-nlp-tools.herokuapp.com/
+
 ## The project is API based using Java Spring boot,to deploy it:
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
